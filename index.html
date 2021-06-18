@@ -6,7 +6,6 @@
     <title>Library</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Roboto:wght@500&display=swap" rel="stylesheet">   
@@ -16,7 +15,7 @@
    <div id="page-title">
        <h1>The Library</h1>
     </div>
-   <div id="container">
+   <div class="container">
        
             <div class="book">
                 <h2>Title: Lord Of The Rings</h2>
@@ -63,9 +62,46 @@
     </div>
 
     <button id="new"><i class="fas fa-book"></i> </button>
-    <!-- <section id  -->
 
+<div class="modal" id='modalForm'>
+    
+    <div class="modalContent">
+
+        <span id="closeBtn">&times;</span>
+        <h4>New Book</h4>
+        <form id="addNewBook">
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" name="title" required> 
+            <br>
+
+            <label for="Author">Author:</label>
+            <input type="text" id="author" name="author" required> 
+            <br>
+
+
+            <label for="pages">Pages:</label>
+            <input type="number" id="pages" name="pages" required> 
+            <br>
+
+        
+            <fieldset>
+                    <input type="radio" id="yes" name="bookread" required>
+                    <label for="notread">Not read 😞</label>
+                
+                    <input type="radio" id="no" name="bookread" required>
+                    <label for="read">Read 🤓</label>
+                </fieldset>     
+            <br>
+            
+            <input type="submit" value="Done" id="done">            
+
+        </form>
+        </div>
+    </div>
+    </div>
+    
     <script src="script.js"></script>
 
 </body>
 </html>
+

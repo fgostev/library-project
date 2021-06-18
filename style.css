@@ -6,14 +6,14 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: rgb(218, 202, 185);
+  background-color: rgb(151, 185, 181);
   font-family: 'Roboto', sans-serif;
 }
 
 h1{
-  background-color: rgb(184, 184, 156);
+  background-color: rgb(75, 120, 115);
   font-family: 'Gloria Hallelujah', cursive;
-  color: rgb(106, 103, 86);
+  color: rgb(202, 202, 182);
   padding:0 30px;
   margin-top: 0;
   font-size: 3em;
@@ -21,7 +21,7 @@ h1{
 }
 
 
-#container{
+.container{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -35,25 +35,144 @@ h1{
   box-shadow: 0 4px 6px 0 rgba(0,0,0,0.6);
   width: 250px;
   height: 30%;
-  background-color: rgb(237, 224, 212);
+  background-color: rgba(255, 255, 255, 0.868);
+}
+
+.book:hover{
+  filter: brightness(105%);
 }
 
 h2{
-  background-color: rgba(202, 202, 182, 0.981);
+  background-color: rgba(203, 224, 219, 0.998);
   padding: 1rem 0;
   margin: -1rem 0;
   border-radius: 20px 20px 0px 0px;
   font-size: 25px;
-  color:rgb(109, 105, 80);
+  color:rgb(75, 120, 115);
   font-family: monospace
 }
 
 h3{
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin: 2.5rem;
-  color: rgb(37, 60, 60);
+  color: rgb(78, 151, 151);
   font-family:monospace;
   text-align: left;
+}
+
+
+.modal{
+  display: none;
+  position: fixed; 
+  z-index: 1;
+  left: 0; 
+  top: 0; 
+  height: 100%;
+  width: 100%; 
+  overflow: auto; 
+  background-color: rgba(82, 157, 147, 0.741);
+  color: rgb(75, 120, 115);
+  
+}
+
+.modalContent{
+  background-color: #f4f4f4;
+  margin: 15% auto;
+  color: rgb(34, 9, 9);
+  width: 50%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+  0 7px 20px 0 rgba(0,0,0,0.2);
+  animation-name: modalopen;
+  animation-duration: 1s;
+  border-radius: 20px;
+}
+
+form{
+  font-family: monospace;
+  width: 100%;
+}
+
+h4{
+
+  background-color: rgba(203, 224, 219, 0.998);
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 20px 20px 0px 0px;
+  font-size: 52px;
+  color:rgb(75, 120, 115);
+  font-family: monospace;
+}
+
+
+label{
+  padding: 1rem;
+  color: rgb(78, 151, 151);
+  font-family:monospace;
+  text-align: left;
+  font-size: 22px;
+  margin: 10px;
+}
+
+input[type=text],input[type=number], select {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  padding: 13px;
+  margin: auto;
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+fieldset{
+  border: none;
+  text-align: center;
+}
+
+input[type=submit] {
+  background-color: rgba(203, 224, 219, 0.998);
+  font-family: monospace;
+  font-size: 30px;
+  color:rgb(75, 120, 115);
+  border: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  padding: 15px;
+}
+
+input[type=submit]:hover {
+  filter: brightness(110%);
+}
+input[type=submit]:active {
+  transform: translate(0, 0.1rem);
+  box-shadow: 0 0.2rem rgba(162, 162, 147, 0.624);
+
+}
+
+
+@keyframes modalopen{
+  from{opacity: 0}
+  to{opacity: 1}
+}
+
+#closeBtn{
+  color: rgba(137, 194, 143, 0.72);
+  float: right;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-right: 25px;
+}
+
+#closeBtn:hover,.closeBtn:focus{
+  color:#000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #new{
@@ -64,7 +183,7 @@ h3{
   height: 60px;
   border-radius: 50%;
   background-color: rgb(202, 202, 182);
-  color: rgb(89, 81, 22);
+  color:rgb(75, 120, 115);
   display: inline-block;
   position: fixed;
   bottom:2%;
@@ -81,11 +200,39 @@ button:active{
   transform: translate(0, 0.1rem);
   box-shadow: 0 0.2rem rgba(162, 162, 147, 0.624);
 
-};
+}
 
 
-@media screen and (max-width: 600px) {
-  #container{
-    flex-direction: column;
+
+
+@media screen and (max-width:850px) {
+  label{
+    font-size: 16px;
   }
+  .modalContent{
+    width: 75%;
+  }
+  .book{
+    width: 35%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  
+  .container{
+    flex-direction: column;
+    align-items: center;
+  }
+  h4{
+    font-size: 40px;
+  }
+ .modalContent{
+   width: 85%;
+ }
+ label{
+   font-size: 14px;
+ }
+ .book{
+   width: 280px;
+ }
 }
