@@ -29,6 +29,7 @@ function defaultBook(){
     firstBook.title = "Lord Of The Rings";
     firstBook.author = "Tolkien";
     firstBook.pages = "2506";
+    firstBook.read = "Yes";
     bookLibrary.push(firstBook);
     displayBooks();
 }
