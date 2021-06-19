@@ -21,14 +21,14 @@ h1{
 }
 
 
-.container{
+.book-shelf{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 2rem;
 }
 
-.book {
+.book{
   border-radius: 20px;
   margin: 2rem 2rem;
   text-align: center;
@@ -39,14 +39,41 @@ h1{
 }
 
 .book:hover{
-  filter: brightness(105%);
+  filter: bright
 }
 
-h2{
+.book:focus{
+
+}
+
+.title{
   background-color: rgba(203, 224, 219, 0.998);
-  padding: 1rem 0;
-  margin: -1rem 0;
   border-radius: 20px 20px 0px 0px;
+}
+
+.delete{
+  color: rgb(158, 125, 125);
+  float: right;
+  font-size: 0.8rem;
+  padding-top: 10px;
+  padding-right: 14px;
+  border: none;
+  background-color: transparent;
+}
+
+.delete:hover{
+  filter: brightness(130%);
+  cursor: pointer;
+}
+
+.delete:active{
+  transform: translate(0, 0.1rem);
+}
+
+
+h2{
+  padding: 1.8rem 0;
+  margin: -1.0rem 0;
   font-size: 25px;
   color:rgb(75, 120, 115);
   font-family: monospace
@@ -191,11 +218,11 @@ input[type=submit]:active {
   cursor: pointer;
 }
 
-button:hover{
+#new:hover{
   filter: brightness(110%);
 }
 
-button:active{
+#new:active{
 
   transform: translate(0, 0.1rem);
   box-shadow: 0 0.2rem rgba(162, 162, 147, 0.624);
