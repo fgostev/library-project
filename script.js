@@ -249,4 +249,3 @@ closeModalBtn.addEventListener('click', closeModal);
 window.addEventListener('click', clickOutside);
 
 
-console.log(localStorage);
