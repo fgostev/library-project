@@ -3,16 +3,37 @@ const bookShelf = document.getElementsByClassName('book-shelf')[0];
 const openModalBtn = document.getElementById('new');
 const closeModalBtn = document.getElementById('closeBtn');
 const deleteBtns = document.getElementsByClassName('delete');
-const books = document.getElementsByClassName('book')
-
-
+const books = document.getElementsByClassName('book');
+const toggleReadBtn = document.getElementsByClassName("toggleread");
 
 const form = document.querySelector("form");
 const done = document.getElementById('done');
 
+
+
+
 // library object
 
 let bookLibrary = [];
+let bookIndx = 0;
+
+
+// storage
+
+const saveToLocalStorage = () => {
+    localStorage.setItem('storedBookLibrary', JSON.stringify(bookLibrary));
+}
+
+let storedInput = JSON.parse(localStorage.getItem('storedBookLibrary'));
+
+
+if(storedInput){
+    bookLibrary = storedInput;
+    displayBooks();
+}else{
+    defaultBook();
+}
+
 
 function Book(){
     this.title = title
@@ -21,7 +42,6 @@ function Book(){
     this.read = read
 };
 
-let bookIndx = 0;
 
 // book on loading
 function defaultBook(){
@@ -34,7 +54,6 @@ function defaultBook(){
     displayBooks();
 }
 
-defaultBook();
 
 // books from form
 
@@ -46,9 +65,9 @@ function addBookToLibrary(){
     newBook.pages = document.getElementById('pages').value;
     
     if(document.getElementById('yes').checked == true){
-        newBook.read = "no";
+        newBook.read = "No";
     }else if (document.getElementById('no').checked == true){ 
-        newBook.read = "yes";
+        newBook.read = "Yes";
     }
     
     bookIndx = bookLibrary.length;
@@ -63,6 +82,12 @@ function addBookToLibrary(){
     Array.from(deleteBtns).forEach(button => {
         button.addEventListener("click", deleteBook);
     });
+
+    Array.from(toggleReadBtn).forEach(btn => {
+        btn.addEventListener("click", toggleRead);
+    })
+
+    saveToLocalStorage();
     
 }
 
@@ -76,7 +101,7 @@ function displayBooks(){
     bookLibrary.forEach(book => {
 
         
-     if(book === pushedBook){   
+     if(book === pushedBook || bookLibrary === storedInput){   
 
 
         const container = document.getElementsByClassName('book-shelf')[0];
@@ -112,12 +137,30 @@ function displayBooks(){
 
         const read = document.createElement("h3");
         read.textContent = "Read: " + book.read;
+        read.className = "readstatus";
         div.appendChild(read);
+
+        const toggleRead = document.createElement("button");
+        if(book.read === "Yes"){
+            toggleRead.className = "toggleread";
+            read.textContent = read.textContent + " " + "🤓";
+
+        }else {
+            toggleRead.className = "toggleread no";
+            read.textContent = read.textContent + " " + "😞";
+        }
+        div.appendChild(toggleRead);
+
+        const toggleIcon = document.createElement("i");
+        toggleIcon.className = "far fa-edit";
+        toggleRead.appendChild(toggleIcon);
 
      }
      idMatchIndex();
     })
 }
+
+
 
 // id checker
 
@@ -140,7 +183,38 @@ function deleteBook(e){
     bookLibrary.splice(parseInt(bookCard.id), 1);
 
     bookCard.remove();
+    saveToLocalStorage();
     idMatchIndex();
+}
+
+
+// toggle read function
+
+function toggleRead(){
+    const btn = this;
+    const book = this.parentElement;
+
+    const yes = document.getElementsByClassName("readstatus");
+    // const no = document.getElementsByClassName("No");
+
+
+    
+    btn.classList.toggle("no")
+
+Array.from(yes).forEach(read => {
+
+    if(btn.className === "toggleread no" && read.parentElement === book){
+        read.textContent = "Read: No 😞";
+        bookLibrary[book.id].read = "No";
+
+    } else if (btn.className === "toggleread" && read.parentElement === book){
+        read.textContent = "Read: Yes 🤓";
+        bookLibrary[book.id].read = "Yes";
+    }
+
+    saveToLocalStorage();
+
+})
 }
 
 
@@ -159,12 +233,20 @@ function clickOutside(e){
         }
     }
 
+
 form.addEventListener('submit', addBookToLibrary);
 
 Array.from(deleteBtns).forEach(button => {
     button.addEventListener("click", deleteBook);
 });
 
+Array.from(toggleReadBtn).forEach(btn => {
+    btn.addEventListener("click", toggleRead);
+})
+
 openModalBtn.addEventListener('click', openModal);
 closeModalBtn.addEventListener('click', closeModal);
 window.addEventListener('click', clickOutside);
+
+
+console.log(localStorage);
