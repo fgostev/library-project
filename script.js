@@ -19,7 +19,7 @@ let bookLibrary = [];
 let bookIndx = 0;
 
 
-// storage
+// local storage
 
 const saveToLocalStorage = () => {
     localStorage.setItem('storedBookLibrary', JSON.stringify(bookLibrary));
@@ -35,6 +35,8 @@ if(storedInput){
     defaultBook();
 }
 
+// book object
+
 
 function Book(){
     this.title = title
@@ -48,7 +50,7 @@ function Book(){
 function defaultBook(){
     const firstBook = Object.create(Book)
     firstBook.title = "The Lord Of The Rings";
-    firstBook.author = "Tolkien";
+    firstBook.author = "J. R. R. Tolkien";
     firstBook.pages = "1178";
     firstBook.read = "Yes";
     bookLibrary.push(firstBook);
@@ -92,16 +94,10 @@ function addBookToLibrary(){
     
 }
 
-// create new book
+// display books
 
-// rewrite the function so is dynamic, write a separate checker function
 
 function displayBooks(book){
-
-
-    // bookLibrary.forEach(book => {
-
-    
 
         const container = document.getElementsByClassName('book-shelf')[0];
 
@@ -147,6 +143,11 @@ function displayBooks(book){
         }else {
             toggleRead.className = "toggleread no";
             read.textContent = read.textContent + " " + "😞";
+            titleDiv.className = "titleno";
+            title.className = "h2no";
+            author.className = "h3no";
+            pages.className = "h3no";
+            read.style.color = "rgb(143, 127, 118)"
         }
         div.appendChild(toggleRead);
 
@@ -173,7 +174,7 @@ function displayPushedBook(){
 })
 };
 
-
+// display storaged books
 
 function displayStroagedBooks(){
 
@@ -216,23 +217,34 @@ function deleteBook(e){
 function toggleRead(){
     const btn = this;
     const book = this.parentElement;
+    const title = book.childNodes[0];
+    const titleh2 = title.childNodes[1];
+    const author = book.childNodes[1];
+    const pages = book.childNodes[2];
 
-    const yes = document.getElementsByClassName("readstatus");
-    // const no = document.getElementsByClassName("No");
+    const read = document.getElementsByClassName("readstatus");
 
-
-    
     btn.classList.toggle("no")
 
-Array.from(yes).forEach(read => {
+Array.from(read).forEach(read => {
 
     if(btn.className === "toggleread no" && read.parentElement === book){
         read.textContent = "Read: No 😞";
         bookLibrary[book.id].read = "No";
+        title.className = "titleno";
+        titleh2.className = "h2no";
+        author.className = "h3no";
+        pages.className = "h3no";
+        read.style.color = "rgb(143, 127, 118)"
 
     } else if (btn.className === "toggleread" && read.parentElement === book){
         read.textContent = "Read: Yes 🤓";
         bookLibrary[book.id].read = "Yes";
+        title.className = "title";
+        titleh2.classList.remove("h2no");
+        author.classList.remove("h3no");
+        pages.classList.remove("h3no");
+        read.style.color = "rgb(78, 151, 151)"
     }
 
     saveToLocalStorage();
