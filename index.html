@@ -17,18 +17,6 @@
     </div>
    <div class="book-shelf"> 
        
-            <!-- <div class="book">
-                <div class="title">
-                <button class="delete"><i class="far fa-trash-alt"> </i></button>
-                <h2>Title: Lord Of The Rings</h2></div>
-                <h3>Author: Tolkien </h3>
-                <h3>Pages: 2356</h3>
-                <h3 class="yes">Read: Yes 🤓</h3>
-                <button class="toggleread"><i class="far fa-edit"></i></button>
-
-                </div> -->
-
-
             </div> 
 
     </div>
@@ -43,16 +31,16 @@
         <h4>New Book</h4>
         <form id="addNewBook">
             <label for="title">Book Title:</label>
-            <input type="text" id="title" name="title" required> 
+            <input type="text" id="title" name="title" required maxlength = "80"> 
             <br>
 
             <label for="Author">Author:</label>
-            <input type="text" id="author" name="author" required> 
+            <input type="text" id="author" name="author" required maxlength = "60"> 
             <br>
 
 
             <label for="pages">Pages:</label>
-            <input type="number" id="pages" name="pages" required> 
+            <input type="number" id="pages" name="pages" min="1" required max = "9999999"> 
             <br>
 
         

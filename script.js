@@ -10,6 +10,7 @@ const form = document.querySelector("form");
 const done = document.getElementById('done');
 
 
+// TEST STORAGE, TEST DEFAULT BOOK
 
 
 // library object
@@ -29,7 +30,7 @@ let storedInput = JSON.parse(localStorage.getItem('storedBookLibrary'));
 
 if(storedInput){
     bookLibrary = storedInput;
-    displayBooks();
+    displayStroagedBooks();
 }else{
     defaultBook();
 }
@@ -46,12 +47,12 @@ function Book(){
 // book on loading
 function defaultBook(){
     const firstBook = Object.create(Book)
-    firstBook.title = "Lord Of The Rings";
+    firstBook.title = "The Lord Of The Rings";
     firstBook.author = "Tolkien";
-    firstBook.pages = "2506";
+    firstBook.pages = "1178";
     firstBook.read = "Yes";
     bookLibrary.push(firstBook);
-    displayBooks();
+    displayPushedBook();
 }
 
 
@@ -73,7 +74,7 @@ function addBookToLibrary(){
     bookIndx = bookLibrary.length;
 
     bookLibrary.push(newBook);
-    displayBooks();
+    displayPushedBook();
 
     modal.style.display = 'none';
 
@@ -93,16 +94,14 @@ function addBookToLibrary(){
 
 // create new book
 
+// rewrite the function so is dynamic, write a separate checker function
 
-function displayBooks(){
+function displayBooks(book){
 
-    let pushedBook = bookLibrary[bookLibrary.length - 1];
 
-    bookLibrary.forEach(book => {
+    // bookLibrary.forEach(book => {
 
-        
-     if(book === pushedBook || bookLibrary === storedInput){   
-
+    
 
         const container = document.getElementsByClassName('book-shelf')[0];
 
@@ -155,11 +154,35 @@ function displayBooks(){
         toggleIcon.className = "far fa-edit";
         toggleRead.appendChild(toggleIcon);
 
-     }
+
      idMatchIndex();
-    })
+    
 }
 
+function displayPushedBook(){
+
+    let pushedBook = bookLibrary[bookLibrary.length - 1];
+
+    bookLibrary.forEach(book => {
+
+     if(book === pushedBook){   
+         
+        displayBooks(book);
+     
+    }
+})
+};
+
+
+
+function displayStroagedBooks(){
+
+    bookLibrary.forEach(book => {
+        
+displayBooks(book)
+})
+
+}
 
 
 // id checker
