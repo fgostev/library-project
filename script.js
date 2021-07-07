@@ -10,9 +10,6 @@ const form = document.querySelector("form");
 const done = document.getElementById('done');
 
 
-// TEST STORAGE, TEST DEFAULT BOOK
-
-
 // library object
 
 let bookLibrary = [];
