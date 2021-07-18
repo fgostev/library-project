@@ -36,19 +36,26 @@ if(storedInput){
 }
 
 // book object
+class Book {
+    constructor(title, author, pages, read){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+}
 
-
-function Book(){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-};
+// function Book(){
+//     this.title = title
+//     this.author = author
+//     this.pages = pages
+//     this.read = read
+// };
 
 
 // book on loading
 function defaultBook(){
-    const firstBook = Object.create(Book)
+    const firstBook = new Book;
     firstBook.title = "The Lord Of The Rings";
     firstBook.author = "J. R. R. Tolkien";
     firstBook.pages = "1178";
@@ -62,7 +69,7 @@ function defaultBook(){
 
 function addBookToLibrary(){
     event.preventDefault();
-    const newBook = Object.create(Book)
+    const newBook = new Book;
     newBook.title = document.getElementById('title').value;
     newBook.author = document.getElementById('author').value;
     newBook.pages = document.getElementById('pages').value;
